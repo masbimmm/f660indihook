@@ -48,7 +48,7 @@ footer="- ${NCL} ${CYAN} NEVER UNBLOCKED PORT, LET'S FIND PUBLIC IP by Masbimmm.
 while :
 do
   echo "Check IP"
-  getip=`curl 'http://localhost/port.php' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'Cookie: ' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' ed 2>/dev/null`
+  getip=`curl 'http://localhost/port.php' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'Cookie: ' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' --compressed --insecure -D -s 2>/dev/null`
   checkport="$(echo "$getip" | grep -c 'PORT OPEN')"
   fail="$(echo "$getip" | grep -c 'Failed')"
   if [[ $fail > 0 ]]; then
@@ -58,6 +58,10 @@ do
   else
     if [[ $checkport > 0 ]]; then
       printf "${GRN} $getip ${NC} $footer"
+      ip="$(echo "$getip" | grep  -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')"
+      flush=`curl 'https://username:Password1@dynupdate.no-ip.com/nic/update?hostname=host&myip='$ip'' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' --compressed -D -s 2>/dev/null`
+      printf "FLUSH DNS NOIP "
+      printf "${NC}${MAGE}$flush${NC}\n"
     else
       printf "${RED} $getip ${NC} $footer"
       printf 'Wait..., '
@@ -74,7 +78,7 @@ do
           printf "${NC} ${YELW}$getip Set => OD to AON ${NC}\n"
         fi
         sleep 5
-        getip=`curl 'http://localhost/port.php' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'Cookie: ' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' ed 2>/dev/null`
+        getip=`curl 'http://localhost/port.php' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'Cookie: ' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' --compressed --insecure -D -s 2>/dev/null`
         checkport="$(echo "$getip" | grep -c 'PORT OPEN')"
         fail="$(echo "$getip" | grep -c 'Failed')"
         if [[ $fail > 0 ]]; then
@@ -82,12 +86,13 @@ do
         else
           if [[ $checkport > 0 ]]; then
             printf "${GRN} $getip ${NC} $footer"
+            ip="$(echo "$getip" | grep  -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')"
+            flush=`curl 'https://username:Password1@dynupdate.no-ip.com/nic/update?hostname=host&myip='$ip'' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' -H 'Cache-Control: no-cache' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-User: ?1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36' -H 'sec-ch-ua: "Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"' -H 'sec-ch-ua-mobile: ?0' -H 'sec-ch-ua-platform: "Windows"' --compressed -D -s 2>/dev/null`
+            printf "FLUSH DNS NOIP "
+            printf "${NC}${MAGE}$flush${NC}\n"
+            break
           else
             printf "${RED} $getip ${NC} $footer"
-          fi
-
-          if [[ $checkport > 0 ]]; then
-            break
           fi
         fi
         
